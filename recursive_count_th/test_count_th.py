@@ -18,7 +18,7 @@ class Test(unittest.TestCase):
         self.assertEqual(1, count)
     
     def test_count_th_multiple(self):
-        self.word = "abcthefthghith"
+        self.word = "abcthefthghith" #"fthghith"
         count = count_th(self.word)
         self.assertEqual(3, count)
 
