@@ -99,33 +99,46 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        self.set_light_on()
         # Fill this out
-        while self.light_is_on():
-            self.swap_item()
+        while self.can_move_right():
             # print(self._item, self._position)
-            if self.can_move_right():
-                self.move_right()
-                if self.compare_item() == 1:
-                    self.swap_item()
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
-                else:
-                    self.set_light_off()
-            elif self.can_move_left():
+            self.swap_item()
+            self.move_right()
+            #change the position between these
+            if self.compare_item() == 1:
+                self.swap_item()
                 self.move_left()
-                if self.compare_item() == -1:
-                    self.swap_item()
-                    self.move_right()
-                    self.swap_item()
-                    self.move_left()
-                else:
-                    self.set_light_off()
-            
-            
-            
+                self.swap_item()
+                self.reset()
 
+            # No change Neded return value
+            elif self.compare_item() in [ 0, -1]:
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+        # while self.can_move_right():
+        #     print(self._item, self._position)
+        #     self.move_right()
+        #     if self.compare_item() == 1:
+        #         self.swap_item()
+        #         self.move_left()
+        #         self.swap_item()
+        #         self.reset()
+        #     elif self.compare_item() in [ 0, -1]:
+        #         if self.can_move_right():
+        #             self.move_left()
+        #             self.swap_item()
+        #         elif self.can_move_right() == False:
+        #             self.move_left()
+        #             self.swap_item()
+        #             self.move_right()
+        #     elif self.compare_item() == None:
+        #         self.swap_item()
+    def reset(self):
+        while self.can_move_left():
+            self.move_left()
+        # print('Position reseted')
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
